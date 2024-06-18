@@ -1,0 +1,132 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pedidos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card *ngFor="let pedido of pedidos" [color]="pedido.color">
+    <ion-toolbar>
+      <ion-title>
+        <ion-chip [color]="pedido.color">Estado: {{pedido.state}}</ion-chip>
+      </ion-title>
+    </ion-toolbar>
+    <ion-card-header>
+      <ion-card-subtitle>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Cambiar estado</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-chip color="warning" [outline] (click)="changeChip('Por reservar',pedido.qr)">Por reservar</ion-chip>
+            <ion-chip color="success" [outline] (click)="changeChip('Listo',pedido.qr)">Listo</ion-chip>
+            <ion-chip color="danger" [outline] (click)="changeChip('Cancelado',pedido.qr)">Cancelado</ion-chip>
+            <ion-chip color="medium" [outline] (click)="changeChip('Completado',pedido.qr)">Completado</ion-chip>
+          </ion-card-content> 
+        </ion-card>
+      </ion-card-subtitle>
+      <ion-card-title>{{pedido.prod}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header [color]="pedido.color">
+          <ion-label>Cliente</ion-label>
+        </ion-list-header>
+        <ion-item [color]="pedido.color">
+          <ion-label>
+            <h1>CLIENTE</h1>
+            <p>{{pedido.cus}}</p>
+          </ion-label>
+        </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Tipo de documento</h1>
+              <p>{{pedido.tipoci}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Identificación</h1>
+              <p>{{pedido.ci}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Correo</h1>
+              <p>{{pedido.email}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Celular</h1>
+              <p>{{pedido.tel}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+          <ion-label>
+            <h1>Dirección</h1>
+            <p>{{pedido.dir}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item [color]="pedido.color">
+          <ion-label>
+            <h1>Método de pago</h1>
+            <p>{{pedido.method}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item [color]="pedido.color">
+          <ion-label>
+            <h1>Imagen de transferencia</h1>
+            <p>
+              <img [src]="pedido.trans" alt="No hay imagen">
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-list-header [color]="pedido.color">
+          <ion-label>Pedido</ion-label>
+        </ion-list-header>
+        <ion-item [color]="pedido.color">
+          <ion-label>
+            <h1>Productos</h1>
+            <p>{{pedido.prod}}</p>
+          </ion-label>
+        </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Precio total</h1>
+              <p>$ {{pedido.price}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Fecha de pedido</h1>
+              <p>{{pedido.fecha}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item [color]="pedido.color">
+            <ion-label>
+              <h1>Retiro / Envío</h1>
+              <p>{{pedido.retiro}}</p>
+            </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="ir()" expand="block" shape="round">
+      <ion-icon slot="start" name="qr-code"></ion-icon>
+      Escanear
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
